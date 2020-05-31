@@ -17,7 +17,7 @@ if artifact_build_path.is_absolute == False:
     artifact_build_path = Path.cwd().joinpath(artifact_build_path)
 
 print(
-    f"Build: {artifact_build_path}, Output: [Path: {artifact_output_path}, Name: {artifact_output_name}]"
+    f"Build: {artifact_build_path}, Output: [Path: {artifact_output_path}, Type: {artifact_build_type}]"
 )
 
 spigot_artifacts = artifact.find_all(artifact_build_path,
