@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BUILD_PATH=${SPIGOT_BUILD_PATH:-BuildTools}
+BUILD_REV=${SPIGOT_BUILD_REV:-latest}
+BUILD_TYPE=${SPIGOT_BUILD_TYPE:-spigot}
+BUILD_OUTPUT_PATH=${SPIGOT_BUILD_OUTPUT_PATH:-Dist}
+BUILD_OUTPUT_NAME=${SPIGOT_BUILD_OUTPUT_NAME:-spigot}
+
+echo -e "\e[0m\e[2mBuilding \e[22m$BUILD_TYPE \e[2mrev. \e[22m\e[32m$BUILD_REV\e[0m..."
+
+cd $BUILD_PATH
+
+case "$BUILD_TYPE" in
+    spigot)
+        echo "Build-type: spigot"
+        java -jar BuildTools.jar --rev $BUILD_REV
+        ;;
+    craftbukkit)
+        echo "Build-type: craftbukkit"
+        java -jar BuildTools.jar --rev $BUILD_REV --compile craftbukkit
+        ;;

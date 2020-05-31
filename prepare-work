@@ -1,0 +1,33 @@
+#!/bin/bash
+
+BUILD_PATH=${SPIGOT_BUILD_PATH:-BuildTools}
+BUILD_REV=${SPIGOT_BUILD_REV:-latest}
+BUILD_TYPE=${SPIGOT_BUILD_TYPE:-spigot}
+BUILD_OUTPUT_PATH=${SPIGOT_BUILD_OUTPUT_PATH:-Dist}
+
+TASK() {
+    echo -e "\e[1m$1\e[21m"
+}
+
+OK() {
+    echo -e " \e[32mOK\e[39m\e[21m"
+}
+
+FAIL() {
+    echo -e " \e[31mFAIL\e[39m\e[21m"
+    exit 1
+}
+
+TASK "Setting up directories"
+
+printf "Creating ${BUILD_PATH}..."
+mkdir --parents ${BUILD_PATH} || FAIL
+OK
+
+printf "Creating ${BUILD_OUTPUT_PATH}..."
+mkdir --parents ${BUILD_OUTPUT_PATH} || FAIL
+OK
+
+printf "Downloading BuildTools..."
+curl -s "https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar" > $BUILD_PATH/BuildTools.jar || FAIL
+OK
