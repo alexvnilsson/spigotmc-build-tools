@@ -19,3 +19,7 @@ case "$BUILD_TYPE" in
         echo "Build-type: craftbukkit"
         java -jar BuildTools.jar --rev $BUILD_REV --compile craftbukkit
         ;;
+    *)
+        echo "Need a BUILD_TYPE (see README)."
+        exit 1
+esac
